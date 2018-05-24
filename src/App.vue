@@ -31,7 +31,11 @@
     </footer>
   </div>
 </template>
-
+<script>
+export default{
+  name: 'App',
+};
+</script>
 <style lang="scss">
 $activeColor: #cc0103;
 #app {
