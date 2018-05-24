@@ -1,10 +1,35 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <router-view></router-view>
+    <footer>
+      <ul>
+        <router-link class="home" to="Home" active-class="active1">
+          <dl>
+            <dt><i class="iconfont">&#xe61f;</i></dt>
+            <dd>主页</dd>
+          </dl>
+        </router-link>
+        <router-link class="market" to="Classify" active-class="active2">
+          <dl>
+            <dt><i class="iconfont">&#xe620;</i></dt>
+            <dd>分类</dd>
+          </dl>
+        </router-link>
+        <router-link class="cart" to="Cart" active-class="active3">
+          <dl>
+            <dt><i class="iconfont">&#xe68e;</i></dt>
+            <dd>购物车</dd>
+          </dl>
+        </router-link>
+        <router-link class="mine" to="Mine" active-class="active4">
+          <dl>
+            <dt><i class="iconfont">&#xe629;</i></dt>
+            <dd>我的</dd>
+          </dl>
+        </router-link>
+      </ul>
+
+    </footer>
   </div>
 </template>
 
