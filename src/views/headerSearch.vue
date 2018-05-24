@@ -1,6 +1,8 @@
 <template>
     <div>
-        <span @click="jump({a:1})"></span>
+        <span @click="jump({a:1})">
+          <i class="iconfont">&&#xe627;</i>搜索商品
+        </span>
     </div>
 </template>
 <script>
@@ -12,6 +14,27 @@ export default{
   },
 };
 </script>
-<style>
-
+<style scoped lang="scss">
+header{
+  width:100%;
+  height: 1.4rem;
+  position:fixed;
+  top:0;
+  background:#fff;
+  div{
+    width: 90%;
+    height:1.0rem;
+    margin:.2rem auto;
+    background-color: #f5f5f5;
+    border: 1px solid #d9d9d9;
+    text-align: center;
+    border-radius: .2rem;
+    span{
+      display:block;
+      width:100%;
+      height:100%;
+      color:#999
+    }
+  }
+}
 </style>

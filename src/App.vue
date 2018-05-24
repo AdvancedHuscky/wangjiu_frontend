@@ -11,7 +11,7 @@
         </router-link>
         <router-link class="market" to="Classify" active-class="active">
           <dl>
-            <dt><i class="iconfont">&#xe620;</i></dt>
+            <dt><i class="iconfont">&&#xe627;</i></dt>
             <dd>分类</dd>
           </dl>
         </router-link>
