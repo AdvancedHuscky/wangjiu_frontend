@@ -8,12 +8,14 @@
         <form class="mui-input-group">
           <div class="mui-input-row">
             <label for=""> 用户名</label>
-            <input type="text" class="mui-input-clear" placeholder="邮箱/手机号" id="user">
+            <input type="text" class="mui-input-clear" placeholder="邮箱/手机号" id="user" @blur='unameTest' v-model="uname">
           </div>
           <div class="mui-input-row">
             <label>密码</label>
-            <input type="password" class="mui-input-password" placeholder="密码" id="pasd">
+            <input type="password" class="mui-input-password" placeholder="密码" id="pasd" @blur='upwdTest' v-model='upwd'>
           </div>
+          <p v-if="unameBool" class="alertInfo">请输入正确的用户名（邮箱或手机号码）</p>
+          <p v-if="upwdBool" class="alertInfo">请输入6-18位密码，只能包含字符，数字和下划线</p>
           <b @click="subClick()" class="btnLogin"> 登 &nbsp;录</b>
           <p class="textTest"><span> 短信验证码登录</span><span>|</span> <span>重置密码</span> </p>
         </form>
@@ -41,7 +43,28 @@ export default {
   data() {
     return {
       flag1: true,
-      flag: false
+      flag: false,
+      uname: '',
+      upwd: '',
+      unameBool: false,
+      upwdBool: false
+    }
+  },
+  methods: {
+    unameTest() {
+      // test the uname acording to phone number or email address
+      if ((!(/^1[34578]\d{9}$/.test(this.uname))) && (!(/^[A-Za-zd0123456789]+([-_.][A-Za-zd]+)*@([A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/.test(this.uname)))) {
+        this.unameBool = true;
+      } else {
+        this.unameBool = false;
+      }
+    },
+    upwdTest() {
+      if (!(/^[\@A-Za-z0-9\!\#\$\%\^\&\*\.\~]{6,22}$/.test(this.upwd))) {
+        this.upwdBool = true;
+      } else {
+        this.upwdBool = false;
+      }
     }
   },
 }
@@ -49,6 +72,7 @@ export default {
 
 <style scoped lang="scss">
 $fontBlue:#0f93de;
+$activeRed:#ca0915;
 .logon{
   width: 100%;
   height:100%;
@@ -95,6 +119,10 @@ $fontBlue:#0f93de;
         span:nth-child(2){
           color:#ccc;
         }
+      }
+      .alertInfo{
+        color:$activeRed;
+        padding: .2rem .5rem;
       }
   }
   .sign_in{

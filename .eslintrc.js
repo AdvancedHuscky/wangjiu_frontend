@@ -13,7 +13,8 @@ module.exports = {
     'max-len': ["warn", 200],
     'import/extensions': 0,
     'comma-dangle': 0,
-    'semi': 0
+    'semi': 0,
+    'no-useless-escape':0
   },
   parserOptions: {
     parser: 'babel-eslint'
