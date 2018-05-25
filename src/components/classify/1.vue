@@ -1,21 +1,18 @@
-<template>
-    <div class="classify">
-      <header-search></header-search>
-      <!-- content start -->
-      <section>
+<section>
         <!-- left side -->
         <div>
           <ul>
-            <li>{{item.category_name}}</li>
+            <li v-for="(item,index) in goodsInfo" @click="listClick(index)" v-bind:class="{red:item.category_name==str}" :key="index">{{item.category_name}}</li>
           </ul>
         </div>
         <!-- right side -->
         <div>
           <h2>
             <a :href="listInfo.action_url">
-              <img :src="@@@" alt="">
+              <img :src="'http://img1.wangjiu.com/' +listInfo.image_url" alt="">
             </a>
           </h2>
+          <!-- content list -->
           <div v-for="(x,key) in listInfo.child_categories" :key="key" class="goods_item">
             <p>{{x.category_name}}</p>
             <ul>
@@ -31,19 +28,3 @@
           </div>
         </div>
       </section>
-    </div>
-</template>
-
-<script>
-import headerSearch from '../headerSearch';
-
-export default {
-  components: {
-    headerSearch,
-  }
-}
-</script>
-
-<style scoped lang="scss">
-
-</style>

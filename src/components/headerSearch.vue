@@ -1,9 +1,11 @@
 <template>
-    <div>
+<header>
+  <div>
         <span @click="jump({a:1})">
-          <i class="iconfont">&&#xe627;</i>搜索商品
+          <i class="iconfont">&#xe620;</i>搜索商品
         </span>
     </div>
+</header>
 </template>
 <script>
 export default{
@@ -33,7 +35,8 @@ header{
       display:block;
       width:100%;
       height:100%;
-      color:#999
+      color:#999;
+      line-height:1rem;
     }
   }
 }
