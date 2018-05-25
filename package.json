@@ -9,6 +9,9 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "http-proxy-middleware": "^0.18.0",
+    "proxytable": "^1.0.1",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
