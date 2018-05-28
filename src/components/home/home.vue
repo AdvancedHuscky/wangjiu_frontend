@@ -36,6 +36,30 @@
           <img v-bind:src="'http://img0.wangjiu.com/' +i.ad_source_imgpath " alt="">
         </a>
     </section>
+
+    <!-- special shop -->
+    <div class="shopInfo" v-for="(y,key) in specialArr" :key="key">
+      <div class="top">
+        <a v-bind:href="y['result']['activity'].ad_source_url">
+          <img v-bind:src="'http://img0.wangjiu.com/'+ y['result']['activity'].ad_source_imgpath" alt="">
+        </a>
+        <!--三角-->
+        <div class="trigon"></div>
+      </div>
+      <div class="shopInfo_banner">
+        <div class="swiper-container2">
+            <div class="swiper-wrapper">
+              <div class="swiper-slide" v-for=" (x,key) in y['result']['item']" :key="key">
+                <a v-bind:href="x.ad_source_url">
+                  <img class="imgs"   v-bind:src= "'http://img0.wangjiu.com/' + x.ad_source_imgpath">
+                  <p class="ellipsis">{{x.ad_schedule_name}}</p>
+                  <p class="price"> {{x.ad_source_description}}</p>
+                </a>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
 </div>
 </template>
 
@@ -50,7 +74,8 @@ export default {
       bannerArr: [],
       iconListArr: [],
       flashSalesArr: [],
-      grandCruArr: []
+      grandCruArr: [],
+      specialArr: []
     }
   },
   mounted() {
@@ -58,16 +83,17 @@ export default {
       this.bannerArr = response.data.result.data;
     })
     axios.get('/home/iconList').then((response) => {
-      console.log(response);
       this.iconListArr = response.data.result.data;
     })
     axios.get('/home/flashSalesList').then((response) => {
-      console.log(response);
       this.flashSalesArr = response.data.result.data;
     })
     axios.get('/home/grandCruList').then((response) => {
-      console.log(response);
       this.grandCruArr = response.data.result.data;
+    })
+    axios.get('/home/specials').then((response) => {
+      console.log(response);
+      this.specialArr = response.data.result.data;
     })
     function swiper2() {
       // eslint-disable-next-line
@@ -114,6 +140,7 @@ export default {
 .home{
   width: 100%;
   height: 100%;
+  padding-bottom: 2rem;
   overflow-x: hidden;
   overflow-y: auto;
   header{
@@ -196,6 +223,60 @@ export default {
       img{
         width: 100%;
         height: 100%;
+      }
+    }
+  }
+  .shopInfo{
+    .top{
+      position: relative;
+      padding-top:.3rem;
+      width: 100%;
+      height: 3.8rem;
+      img{
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+      .trigon{
+        display: block;
+        position: absolute;
+        top:3.6rem;
+        left: 50%;
+        width:0;
+        height:0;
+        border-left: .32rem solid transparent;
+        border-right: .32rem solid transparent;
+        border-bottom: .32rem solid #fff;
+        transform: translateX(-50%);
+      }
+    }
+    .shopInfo_banner{
+      padding-top:.3rem;
+      background: #fff;
+      .swiper-slide{
+        margin-right: .16rem;
+        .imgs{
+          width: 100%;
+          height:100%;
+          border: 1px solid #ccc;
+          box-sizing: border-box;
+        }
+        .price{
+          font-size: 0.375rem;
+          color: #ca0915;
+          background: #fff;
+          text-align: center;
+          padding-bottom:0.3rem;;
+        }
+        .ellipsis{
+          padding-top:0.1rem;;
+          font-size: 0.375rem;
+          background: #fff;
+          text-align: center;
+        }
+      }
+      .swiper-slide:nth-child(1){
+        margin-left: .3rem;
       }
     }
   }
