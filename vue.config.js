@@ -16,6 +16,11 @@ module.exports = {
         ws: true,
         changeOrigin: true
       },
+      '/home/grandCruList': {
+        target: 'http://localhost:3000',
+        ws: true,
+        changeOrigin: true
+      },
       '/goods': {
         target: 'http://localhost:3000',
         ws: true,

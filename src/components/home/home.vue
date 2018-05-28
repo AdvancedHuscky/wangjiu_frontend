@@ -30,6 +30,12 @@
         <img v-bind:src="'http://img0.wangjiu.com/'+ item.ad_source_imgpath" alt="">
       </a>
     </section>
+    <!-- grand cru -->
+    <section class="stage">
+        <a v-bind:href="i.ad_source_url" v-for="(i,key) in grandCruArr" :key="key">
+          <img v-bind:src="'http://img0.wangjiu.com/' +i.ad_source_imgpath " alt="">
+        </a>
+    </section>
 </div>
 </template>
 
@@ -43,7 +49,8 @@ export default {
     return {
       bannerArr: [],
       iconListArr: [],
-      flashSalesArr: []
+      flashSalesArr: [],
+      grandCruArr: []
     }
   },
   mounted() {
@@ -57,6 +64,10 @@ export default {
     axios.get('/home/flashSalesList').then((response) => {
       console.log(response);
       this.flashSalesArr = response.data.result.data;
+    })
+    axios.get('/home/grandCruList').then((response) => {
+      console.log(response);
+      this.grandCruArr = response.data.result.data;
     })
     function swiper2() {
       // eslint-disable-next-line
@@ -162,6 +173,29 @@ export default {
       float: left;
       img{
         width: 99%;
+      }
+    }
+  }
+  .stage{
+    width: 100%;
+    background: #fff;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    flex-direction: row;
+    a:nth-child(1){
+      height:2.2rem;
+      width: 100%;
+      img{
+        width: 100%;
+        height: 100%;
+      }
+    }
+    a{
+      width: 30%;
+      img{
+        width: 100%;
+        height: 100%;
       }
     }
   }
