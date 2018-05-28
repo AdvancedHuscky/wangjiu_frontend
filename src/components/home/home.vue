@@ -26,7 +26,7 @@
 
     <!--flash sales-->
       <section class="hot">
-      <a  v-for="(item,key) in flashSalesList" v-bind:href="item.ad_source_url" :key="key">
+      <a  v-for="(item,key) in flashSalesArr" v-bind:href="item.ad_source_url" :key="key">
         <img v-bind:src="'http://img0.wangjiu.com/'+ item.ad_source_imgpath" alt="">
       </a>
     </section>
@@ -43,7 +43,7 @@ export default {
     return {
       bannerArr: [],
       iconListArr: [],
-      flashSalesList: []
+      flashSalesArr: []
     }
   },
   mounted() {
@@ -56,7 +56,7 @@ export default {
     })
     axios.get('/home/flashSalesList').then((response) => {
       console.log(response);
-      this.iconListArr = response.data.result.data;
+      this.flashSalesArr = response.data.result.data;
     })
     function swiper2() {
       // eslint-disable-next-line
@@ -132,6 +132,7 @@ export default {
     width:100%;
     padding: .3rem 0;
     background: #ffffff;
+    margin-top:.3rem;
     // justify-content: center;
     li{
       text-align: center;
@@ -152,7 +153,18 @@ export default {
       }
     }
   }
-
+  .hot{
+    width: 100%;
+    margin-top:.3rem;
+    a{
+      display:block;
+      width: 50%;
+      float: left;
+      img{
+        width: 99%;
+      }
+    }
+  }
 }
 </style>
 
