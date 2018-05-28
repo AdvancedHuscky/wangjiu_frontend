@@ -1,6 +1,7 @@
 <template>
 <div class="home">
   <header-search></header-search>
+  <!-- carousel start -->
   <section class="banner">
       <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -10,6 +11,24 @@
         </div>
         <div class="swiper-pagination swiper-pagination-clickable swiper-pagination-bullets"></div>
       </div>
+    </section>
+    <!-- icon-list -->
+    <div class="info1">
+      <ul>
+        <li v-for="(info,key) in iconListArr" :key="key">
+          <a v-bind:href="info.ad_source_url">
+            <img v-bind:src="'http://img0.wangjiu.com/' + info.ad_source_imgpath" alt="">
+            <p>{{info.ad_source_title}}</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <!--flash sales-->
+      <section class="hot">
+      <a  v-for="(item,key) in flashSalesList" v-bind:href="item.ad_source_url" :key="key">
+        <img v-bind:src="'http://img0.wangjiu.com/'+ item.ad_source_imgpath" alt="">
+      </a>
     </section>
 </div>
 </template>
@@ -23,12 +42,21 @@ export default {
   data() {
     return {
       bannerArr: [],
+      iconListArr: [],
+      flashSalesList: []
     }
   },
   mounted() {
     axios.get('/home/carousel').then((response) => {
-      console.log(response);
       this.bannerArr = response.data.result.data;
+    })
+    axios.get('/home/iconList').then((response) => {
+      console.log(response);
+      this.iconListArr = response.data.result.data;
+    })
+    axios.get('/home/flashSalesList').then((response) => {
+      console.log(response);
+      this.iconListArr = response.data.result.data;
     })
     function swiper2() {
       // eslint-disable-next-line
@@ -68,7 +96,7 @@ export default {
       border-radius: .2rem;
       background-color: rgba(0,0,0,.2)  !important;
       span{
-        color:rgba(0,0,0,.1);
+        color: #d9d9d9 !important;
         background-color: rgba(0,0,0,.1) !important;
   }
 }
@@ -99,6 +127,32 @@ export default {
       }
     }
   }
+  .info1 ul{
+    display: flex;
+    width:100%;
+    padding: .3rem 0;
+    background: #ffffff;
+    // justify-content: center;
+    li{
+      text-align: center;
+      width: 25%;
+      a{
+        display: block;
+        height: 100%;
+        text-align: center;
+        img{
+          width: 1.2rem;
+          height: 1.2rem;
+          //margin-left: .6rem;
+        }
+        p{
+          font-size: .375rem;
+          color:#666;
+        }
+      }
+    }
+  }
+
 }
 </style>
 
