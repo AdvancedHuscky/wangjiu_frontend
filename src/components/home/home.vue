@@ -1,5 +1,5 @@
 <template>
-<div>
+<div class="home">
   <header-search></header-search>
   <section class="banner">
       <div class="swiper-container">
@@ -60,3 +60,45 @@ export default {
   },
 };
 </script>
+<style scoped lang="scss">
+#search-box {
+      width: 80%;
+      height: .8rem;
+      margin: .2rem auto;
+      border-radius: .2rem;
+      background-color: rgba(0,0,0,.2)  !important;
+      span{
+        color:rgba(0,0,0,.1);
+        background-color: rgba(0,0,0,.1) !important;
+  }
+}
+.home{
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  header{
+    position: fixed;
+    top: 0;
+    z-index: 10;
+    background: rgba(0,0,0,.2);
+  }
+  .banner{
+    width: 100%;
+    height: 5.6rem;
+    .swiper-container{
+      width: 100%;
+      height: 100%;
+      .swiper-slide{
+        width: 100%;
+        height:100%;
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+}
+</style>
+

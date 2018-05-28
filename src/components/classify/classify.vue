@@ -79,6 +79,14 @@ export default {
 <style scoped lang="scss">
 $activeRed:#ca0915;
 $background:#efefef;
+header{
+  div {
+    background-color: #f5f5f5;
+    span{
+      color:#999;
+    }
+  }
+}
 section{
   margin-top: 1.4rem;
   width: 100%;

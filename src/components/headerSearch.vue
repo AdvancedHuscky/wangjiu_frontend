@@ -1,8 +1,8 @@
 <template>
 <header>
   <div>
-        <span @click="jump({a:1})">
-          <i class="iconfont">&#xe620;</i>搜索商品
+        <span @click="jump({a:1})" id="search-box">
+          <i class="iconfont">&#xe620;</i> 搜索商品
         </span>
     </div>
 </header>
@@ -27,7 +27,6 @@ header{
     width: 90%;
     height:1.0rem;
     margin:.2rem auto;
-    background-color: #f5f5f5;
     border: 1px solid #d9d9d9;
     text-align: center;
     border-radius: .2rem;
@@ -35,7 +34,6 @@ header{
       display:block;
       width:100%;
       height:100%;
-      color:#999;
       line-height:1rem;
     }
   }
