@@ -89,6 +89,7 @@
 import axios from 'axios';
 import InfiniteLoading from 'vue-infinite-loading';
 import headerSearch from '../headerSearch';
+import { currency } from '../../util/currency.js'
 
 export default {
   data() {
@@ -163,6 +164,9 @@ export default {
       swiper1()
       swiper2()
     }, 100)
+  },
+  filters: {
+    currency
   },
   components: {
     headerSearch,
