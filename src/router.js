@@ -4,7 +4,6 @@ import vueResource from 'vue-resource'
 import Home from './components/home/home.vue'
 import Classify from './components/classify/classify.vue'
 import Mine from './components/mine/mine.vue'
-import hackers from './components/hackers'
 
 Vue.use(Router);
 Vue.use(vueResource);
@@ -13,7 +12,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: hackers,
+      component: Home,
     },
     {
       path: '/home',
