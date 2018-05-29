@@ -14,7 +14,10 @@ module.exports = {
     'import/extensions': 0,
     'comma-dangle': 0,
     'semi': 0,
-    'no-useless-escape':0
+    'no-useless-escape':0,
+    "no-plusplus":0,
+    "no-mixed-operators":0,
+    "eqeqeq":0
   },
   parserOptions: {
     parser: 'babel-eslint'

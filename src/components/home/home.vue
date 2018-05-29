@@ -1,7 +1,7 @@
 <template>
 <div class="home">
   <header-search></header-search>
-  <!-- carousel start -->
+   <!-- carousel start -->
   <section class="banner">
       <div class="swiper-container">
         <div class="swiper-wrapper">
@@ -43,7 +43,7 @@
         <a v-bind:href="y['result']['activity'].ad_source_url">
           <img v-bind:src="'http://img0.wangjiu.com/'+ y['result']['activity'].ad_source_imgpath" alt="">
         </a>
-        <!--三角-->
+        <!--triangle-->
         <div class="trigon"></div>
       </div>
       <div class="shopInfo_banner">
@@ -60,12 +60,34 @@
         </div>
       </div>
     </div>
+   <!-- goods item list -->
+    <div class="recommend">
+      <h3> 热门推荐</h3>
+      <ul>
+        <li v-for="(y,key) in goodsItemArr" :key="key">
+          <router-link :to="{path:'detail',query:{id:y.pid,price:y.sale_price}}">
+            <img v-bind:src=" 'http://img2.wangjiu.com/' + y.image_src" alt="">
+            <h5 class="ellipsis">{{ y.product_name}}</h5>
+            <h4> {{y.sale_price  | currency}}</h4>
+          </router-link>
+        </li>
+        <!-- <div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
+        ...
+      </div> -->
+      </ul>
+      <infinite-loading @infinite="infiniteHandler">
+    <span slot="no-more">
+      There is no more product :)
+    </span>
+  </infinite-loading>
+    </div>
 </div>
 </template>
 
 <script>
 // @ is an alias to /src
 import axios from 'axios';
+import InfiniteLoading from 'vue-infinite-loading';
 import headerSearch from '../headerSearch';
 
 export default {
@@ -75,10 +97,33 @@ export default {
       iconListArr: [],
       flashSalesArr: [],
       grandCruArr: [],
-      specialArr: []
+      specialArr: [],
+      goodsItemArr: [],
+      busy: false,
+      page: 1
     }
   },
+  methods: {
+    infiniteHandler($state) {
+      axios.get('/home/goodsItem', {
+        params: {
+          page: this.goodsItemArr.length / 8 + 1,
+        },
+      }).then(({ data }) => {
+        if (data.result.data.length) {
+          this.goodsItemArr = this.goodsItemArr.concat(data.result.data);
+          $state.loaded();
+          if (this.goodsItemArr.length === 38) {
+            $state.complete();
+          }
+        } else {
+          $state.complete();
+        }
+      });
+    },
+  },
   mounted() {
+    // this.getGoodsList();
     axios.get('/home/carousel').then((response) => {
       this.bannerArr = response.data.result.data;
     })
@@ -92,7 +137,6 @@ export default {
       this.grandCruArr = response.data.result.data;
     })
     axios.get('/home/specials').then((response) => {
-      console.log(response);
       this.specialArr = response.data.result.data;
     })
     function swiper2() {
@@ -122,6 +166,7 @@ export default {
   },
   components: {
     headerSearch,
+    InfiniteLoading
   },
 };
 </script>
@@ -140,7 +185,7 @@ export default {
 .home{
   width: 100%;
   height: 100%;
-  padding-bottom: 2rem;
+  padding-bottom: 1.5rem;
   overflow-x: hidden;
   overflow-y: auto;
   header{
@@ -279,6 +324,69 @@ export default {
         margin-left: .3rem;
       }
     }
+  }
+  .recommend {
+    h3{
+    position: relative;
+    padding-top: .2rem;
+    width: 100%;
+    text-align: center;
+    height: 1.3rem;
+    line-height: 1.3rem;
+    font-size: .4rem
+  }
+  h3:before{
+    display: block;
+    position: absolute;
+    top: 60%;
+    left: 16%;
+    width: 2.2rem;
+    height: .09rem;
+    content: "";
+    background-color: #dfdfdf;
+  }
+  h3:after{
+    display: block;
+    position: absolute;
+    top: 60%;
+    right: 16%;
+    width: 2.2rem;
+    height: .09rem;
+    content: "";
+    background-color: #dfdfdf;
+  }
+  ul{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    li{
+      background: #fff;
+      width: 49%;
+      margin-bottom: .1rem;
+      a{
+        display: block;
+        img{
+          width: 100%;
+        }
+        h5{
+          width: 100%;
+          margin: 0;
+          text-align: left;
+          color: #333;
+          padding-left: .3rem;
+          font-size: .375rem;
+        }
+        h4{
+          padding-left: .3rem;
+          color: #ca0915;
+          font-size: .43rem;
+        }
+      }
+    }
+    li:nth-child(odd){
+      margin-right: 1%;
+    }
+  }
   }
 }
 </style>
