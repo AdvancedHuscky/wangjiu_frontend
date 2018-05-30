@@ -63,6 +63,7 @@ export default {
 </script>
 
 <style scoped lang='scss'>
+$activeRed:#ca0915;
 .detail{
   position: absolute;
   top: 0;
@@ -70,6 +71,102 @@ export default {
   height: 100%;
   background: #ededed;
   z-index: 11;
-  header
+  header{
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 1.6rem;
+    background: #fff;
+    padding-top: .2rem;
+    border-bottom: 1px solid #ccc;
+    z-index: 10;
+    .home:before{
+      position: absolute;
+      top:.7rem;
+      left: .7rem;
+      display: block;
+      content:"";
+      height: .3rem;
+      width: .3rem;
+      border-bottom: 1px solid #5d5d5d;
+      border-right: 1px solid #5d5d5d;
+      transform: rotate(135deg);
+    }
+    div{
+      display: flex;
+      width: 70%;
+      height: 1.2rem;
+      padding-left: .4rem;
+      padding-top: .1rem;
+      margin: 0 auto;
+      justify-content: center;
+      align-items:center;
+      a{
+        width: 30%;
+        font-size: .4rem;
+      }
+      .detail_active,.detail_active1,.detail_active2{
+        color: $activeRed;
+      }
+    }
+    .point{
+      position:absolute;
+      right: .3rem;
+      top: .7rem;
+      span{
+        display:block;
+        float:left;
+        width: .1rem;
+        height: .1rem;
+        border-radius: 50%;
+        margin-left: .2rem;
+        background: #999
+      }
+    }
+    section {
+      position: absolute;
+      top:1.6rem;
+      right:.3rem;
+      width: 3.5rem;
+      padding-left: .3rem;
+      border-radius: .2rem;
+      background: #000;
+      a{
+        display:block;
+        padding-left: .8rem;
+        line-height: 1.1rem;
+        color: #fff;
+      }
+      a:nth-child(1){
+        background:url("../../../public/img/home.png") no-repeat  0 50%;
+        background-size: 0.6rem auto;
+      }
+      a:nth-child(2){
+        background:url("../../../public/img/market.png") no-repeat  0 50%;
+        background-size: 0.6rem auto;
+      }
+      a:nth-child(3){
+        background:url("../../../public/img/cart.png") no-repeat  0 50%;
+        background-size: 0.6rem auto;
+      }
+      a:nth-child(4){
+        background:url("../../../public/img/mine.png") no-repeat  0 50%;
+        background-size: 0.6rem auto;
+      }
+    }
+    section:before{
+      content:'';
+      position: absolute;
+      top: -.1rem;
+      right:.3rem;
+      width: .3rem;
+      height: .3rem;
+      background: #000;
+      transform: rotate(135deg)
+    }
+  }
+  .detail_view{
+    margin-top: 1.6rem;
+  }
 }
 </style>
