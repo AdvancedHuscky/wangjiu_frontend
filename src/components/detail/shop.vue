@@ -70,7 +70,7 @@
       </a>
       <router-link to="/Cart" class="cart">
         <dl>
-          <dt><span></span></dt>
+          <dt><span></span><i class="cartNum" v-show="cartFlag">{{ cartNum }}</i></dt>
           <dd>购物车</dd>
         </dl>
       </router-link>
@@ -93,7 +93,9 @@ export default {
       price: '',
       count: '',
       num1: 0,
-      product_properties: []
+      product_properties: [],
+      cartFlag: true,
+      cartNum: 0
     }
   },
   created() {
@@ -101,6 +103,15 @@ export default {
     this.id = 935622255// JSON.parse(aaa).id;
     this.price = JSON.parse(aaa).price;
     console.log(this.id)
+    const localData = localStorage.getItem('cartInfo');
+    let dataObj;
+    if (!localData) {
+      dataObj = {};
+    } else {
+      dataObj = JSON.parse(localData);
+      const tempData = dataObj[this.id];
+      this.cartNum = tempData.num;
+    }
     Axios.get(`/detail?id=${this.id}`).then(({ data }) => {
       this.goodArr = data.result.list[0].list
       console.log(this.goodArr);
@@ -125,7 +136,7 @@ export default {
       this.num1 = this.num1 < 0 ? 0 : this.num1;
     },
     addCart() {
-      const localData = localStorage.get('cartInfo');
+      const localData = localStorage.getItem('cartInfo');
       let dataObj;
       if (!localData) {
         dataObj = {};
@@ -144,9 +155,12 @@ export default {
         dataObj[this.id] = cartObj
       } else {
         tempData.num += this.num1
+        this.cartNum = tempData.num;
       }
       localStorage.setItem('cartInfo', JSON.stringify(dataObj))
     }
+  },
+  computed: {
   },
   filters: {
     currency
@@ -308,9 +322,25 @@ $basicRed:#ca0915;
     background: url(../../../public/img/service.png) no-repeat;
     background-size: 0.5rem;
   }
-  .cart span {
-    background: url(../../../public/img/cart.png) no-repeat;
-    background-size: 0.5rem;
+  .cart{
+    position: relative;
+    .cartNum{
+      position: absolute;
+      top:-.3rem;
+      left:.2rem;
+      height:.7rem;
+      width:.7rem;
+      background: $basicRed;
+      border-radius: 50%;
+      text-align: center;
+      line-height: .7rem;
+      color:#fff;
+      font-weight: 900;
+    }
+    span {
+      background: url(../../../public/img/cart.png) no-repeat;
+      background-size: 0.5rem;
+    }
   }
   }
 }
