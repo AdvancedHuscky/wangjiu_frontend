@@ -20,7 +20,6 @@
         <router-link to="/Mine">我的</router-link>
       </section>
     </header>
-
     <router-view class="detail_view"></router-view>
   </div>
 </template>
@@ -55,6 +54,7 @@ export default {
       price: this.price
     }
     localStorage.setItem('id', JSON.stringify(obj))
+    this.$router.push({ path: '/detail/shop' })
   },
   destroyed() {
     localStorage.removeItem('id')

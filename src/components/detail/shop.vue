@@ -81,11 +81,21 @@
 </template>
 
 <script>
+import Axios from 'axios'
+
 export default {
+  data() {
+    return {
+      key: value
+    }
+  },
+  created() {
+
+  }
 
 }
 </script>
 
-<style scoped>
+<style scoped lang='scss'>
 
 </style>
