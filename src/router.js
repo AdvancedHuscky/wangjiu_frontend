@@ -38,9 +38,12 @@ export default new Router({
     },
     {
       path: '/detail',
-      name: 'Detail',
       component: Detail,
       children: [
+        {
+          path: '/',
+          component: Shop,
+        },
         {
           path: '/detail/shop',
           name: 'shop',

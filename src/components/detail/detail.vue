@@ -25,6 +25,7 @@
 </template>
 
 <script>
+
 export default {
   name: 'detail',
   data() {
@@ -54,7 +55,6 @@ export default {
       price: this.price
     }
     localStorage.setItem('id', JSON.stringify(obj))
-    this.$router.push({ path: '/detail/shop' })
   },
   destroyed() {
     localStorage.removeItem('id')

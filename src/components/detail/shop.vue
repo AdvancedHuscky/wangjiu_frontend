@@ -82,15 +82,29 @@
 
 <script>
 import Axios from 'axios'
+import { currency } from '../../util/currency';
 
 export default {
   data() {
     return {
-      key: value
+      id: '',
+      goodArr: '',
+      price: '',
+      count: '',
+      num1: '',
+      product_properties: []
     }
   },
   created() {
-
+    this.id = this.$route.query.id;
+    this.price = this.$route.query.price;
+    Axios.get(`/detail?id=${this.id}`).then(({ data }) => {
+      this.goodArr = data.result.list[0].list
+      console.log(this.goodArr);
+    });
+  },
+  filters: {
+    currency
   }
 
 }
