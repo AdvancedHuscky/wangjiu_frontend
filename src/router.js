@@ -5,6 +5,7 @@ import Home from './components/home/home.vue'
 import Classify from './components/classify/classify.vue'
 import Cart from './components/cart/cart.vue'
 import Mine from './components/mine/mine.vue'
+import Detail from './components/detail/detail.vue'
 
 Vue.use(Router);
 Vue.use(vueResource);
@@ -33,6 +34,11 @@ export default new Router({
       path: '/Mine',
       name: 'Mine',
       component: Mine,
+    },
+    {
+      path: '/detail',
+      name: 'Detail',
+      component: Detail,
     },
   ],
 });
