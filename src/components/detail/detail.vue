@@ -34,7 +34,7 @@ export default {
       flag2: 0,
       id: 0,
       itemId: '',
-      price: ''
+      price: '',
     }
   },
   methods: {
@@ -55,9 +55,10 @@ export default {
       price: this.price
     }
     localStorage.setItem('id', JSON.stringify(obj))
+    this.$router.push({ path: '/detail/shop' })
   },
   destroyed() {
-    localStorage.removeItem('id')
+    // localStorage.removeItem('id')
   }
 }
 </script>
