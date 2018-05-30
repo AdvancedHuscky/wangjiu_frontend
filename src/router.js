@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import vueResource from 'vue-resource'
 import Home from './components/home/home.vue'
 import Classify from './components/classify/classify.vue'
+import Cart from './components/cart/cart.vue'
 import Mine from './components/mine/mine.vue'
 
 Vue.use(Router);
@@ -22,6 +23,11 @@ export default new Router({
       path: '/Classify',
       name: 'Classify',
       component: Classify,
+    },
+    {
+      path: '/Cart',
+      name: 'cart',
+      component: Cart,
     },
     {
       path: '/Mine',
