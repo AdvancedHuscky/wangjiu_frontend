@@ -8,6 +8,7 @@ import Mine from './components/mine/mine.vue'
 import Detail from './components/detail/detail.vue'
 import Shop from './components/detail/shop.vue'
 import Evaluate from './components/detail/evaluate.vue'
+import shopDetail from './components/detail/shopDetail.vue'
 
 Vue.use(Router);
 Vue.use(vueResource);
@@ -49,6 +50,11 @@ export default new Router({
           path: '/detail/shop',
           name: 'shop',
           component: Shop,
+        },
+        {
+          path: '/detail/shopDetail',
+          name: 'shopDetail',
+          component: shopDetail,
         },
         {
           path: '/detail/evaluate',
