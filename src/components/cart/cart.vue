@@ -262,4 +262,39 @@ export default {
   .mui-table-view-cell:after{
     background: #fff;
   }
+
+  .footer{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    position: fixed;
+    bottom: 1.5rem;
+    background: #fff;;
+  }
+  .price{
+    margin-left:0.8rem;;
+    width: 3.0rem;
+  }
+  .price p {
+     /*width: 3.0rem;*/
+   font-size: 0.4375rem;
+  }
+  .price p>span{
+    color: #ca0915
+
+  }
+  .price h6{
+    font-size: 0.375rem;
+    width: 100%;
+    text-align: right;
+    margin: 0;
+    color: #999
+  }
+  .footer button{
+    margin-left:0.2rem;;
+    color: #fff;
+    background: #ca0915;
+    padding-left:0.9rem;
+    padding-right:0.9rem;;
+  }
 </style>
