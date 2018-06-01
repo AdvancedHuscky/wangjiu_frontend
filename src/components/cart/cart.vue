@@ -13,19 +13,88 @@
 
       <router-link to="/home">去逛逛</router-link>
     </div>
+    <div class="good">
+       <div class="good_tit">
+         <div class="mui-input-row mui-checkbox mui-left" >
+           <label>
+             <img src="http://m.wangjiu.com/htmlResource/images/o05.png" alt="">
+             网酒网
+           </label>
+           <input name="checkbox1" value="Item 1" type="checkbox" checked>
+         </div>
+       </div>
+
+
+     <ul>
+       <li v-for="(value, key ) in goodInfo" :key="key">
+
+         <!--选择-->
+         <div class="choice">
+             <div class="mui-input-row mui-checkbox mui-left car_che">
+               <label></label>
+               <input name="checkbox1" value="Item 1" type="checkbox" checked>
+             </div>
+         </div>
+         <!--信息-->
+         <div class="info">
+           <img :src="'http://img1.wangjiu.com/' +value.url " alt="">
+           <div class="aaa">
+             <p>{{ value.name}}</p>
+             <h3>
+               <span style="color: #ca0915">{{ value.price |currency}}</span>
+               <div class="mui-numbox" data-numbox-step='10' data-numbox-min='0' data-numbox-max='100'>
+                 <button class="mui-btn mui-numbox-btn-minus" type="button" @click="jianClick(value.id)">-</button>
+                 <input class="mui-numbox-input" type="number"  value="0" id="num" v-model="value.num"/>
+                 <button class="mui-btn mui-numbox-btn-plus" type="button" @click="jiaClick(value.id)">+</button>
+               </div>
+             </h3>
+           </div>
+         </div>
+       </li>
+     </ul>
+      <!--结算-->
+      <div class="footer">
+        <div class="mui-input-row mui-checkbox mui-left" >
+          <label>全选</label>
+          <input name="checkbox1" value="Item 1" type="checkbox" checked>
+        </div>
+
+        <div class="price">
+          <p> 合计 <span>{{sum |currency}}</span></p>
+          <h6>已优惠￥0.00</h6>
+        </div>
+        <button>结算</button>
+
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { currency } from '../../util/currency';
+
 export default {
   data() {
     return {
       flag: true,
       a: '编辑',
       sum: 0,
-      sumPrice: ''
+      sumPrice: '',
+      goodInfo: ''
     }
   },
+  filters: {
+    currency
+  },
+  created() {
+    const locationData = localStorage.getItem('cartInfo');
+    if (!locationData) { // nothing in cart
+      this.flag = true;
+    } else {
+      this.flag = false;
+      this.goodInfo = JSON.parse(locationData)
+    }
+  }
 }
 </script>
 
@@ -78,4 +147,101 @@ export default {
     }
   }
 }
+.good{
+    clear: both;
+    padding-top:1.5rem;;
+  }
+  .good_tit{
+    background: #f8f8f8;
+    line-height:0.8rem;
+    margin-top:0.3rem;;
+    /*padding: 0.3rem;*/
+  }
+  .mui-input-row input{
+    top: 0.2rem;
+
+  }
+  .mui-radio.mui-left input[type='radio'], .mui-checkbox.mui-left input[type='checkbox']{
+    left:0.28rem;
+  }
+  .mui-radio input[type='radio']:checked:before, .mui-checkbox input[type='checkbox']:checked:before{
+    color:#cc0103;
+  }
+  label{
+    font-size: 0.4375rem;
+    padding-left:1.2rem;
+  }
+  .car_che{
+    margin-top:0.8rem;;
+  }
+  label img{
+    width: 0.7rem;
+  }
+  .good ul{
+    background: #fff;
+  }
+  .good ul li{
+    /*background: #fff;*/
+    display: flex;
+    justify-content: flex-start;
+    padding: 0.3rem 0;
+  }
+  .choice{
+    width: 15%;
+
+    line-height:2.0rem;;
+  }
+  /*信息*/
+  .info{
+    display: flex;
+    justify-content: flex-start;
+    width: 85%;
+    border-bottom:1px solid #ededed;
+  }
+  .info img{
+
+    height: 2.5rem;
+    border: 1px solid #ededed;
+    border-radius: 6px;;
+    float: left;
+    margin:0.3rem 0;
+  }
+  li:last-child .info{
+    border: none;
+  }
+  .info>div{
+    width: 85%;
+    padding-left:0.2rem;;
+  }
+  .info >div>p{
+    width: 100%;
+    font-size: 0.4375rem;;
+  }
+  .info >div>h3{
+    width: 100%;
+    display: flex;
+    padding-top:1.3rem;;
+    justify-content: space-between;
+    position: relative;
+  }
+  .info >div>h3 span{
+    font-size: 0.4375rem;;
+  }
+  .mui-numbox{
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0rem;
+
+    height: 0.9rem;
+    width:3.0rem;
+    margin-left:1.0rem;;
+    padding-left: 1rem;
+  }
+  .mui-numbox> button{
+    width: 1.0rem;
+  }
+
+  .mui-table-view-cell:after{
+    background: #fff;
+  }
 </style>
