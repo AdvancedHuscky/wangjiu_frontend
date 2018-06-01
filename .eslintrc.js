@@ -18,7 +18,8 @@ module.exports = {
     "no-plusplus":0,
     "no-mixed-operators":0,
     "eqeqeq":0,
-    "import/prefer-default-export":0
+    "import/prefer-default-export":0,
+    "no-restricted-syntax":0
   },
   parserOptions: {
     parser: 'babel-eslint'

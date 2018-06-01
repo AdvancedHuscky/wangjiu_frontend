@@ -100,7 +100,7 @@ export default {
   },
   created() {
     const aaa = localStorage.getItem('id')
-    this.id = 935622255// JSON.parse(aaa).id;
+    this.id = JSON.parse(aaa).id;
     this.price = JSON.parse(aaa).price;
     console.log(this.id)
     const localData = localStorage.getItem('cartInfo');

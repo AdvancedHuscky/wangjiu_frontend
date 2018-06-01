@@ -83,6 +83,21 @@ export default {
       goodInfo: ''
     }
   },
+  methods: {
+    func() {
+      let sum = 0;
+      const locationData = localStorage.getItem('cartInfo');
+      const a = JSON.parse(locationData)
+      console.log(a);
+      for (const y in a) {
+        if (y) {
+          sum += a[y].num * a[y].price
+        }
+      }
+      console.log(sum);
+      return sum
+    }
+  },
   filters: {
     currency
   },
@@ -94,7 +109,10 @@ export default {
       this.flag = false;
       this.goodInfo = JSON.parse(locationData)
     }
-  }
+  },
+  mounted() {
+    this.sum = this.func()
+  },
 }
 </script>
 
