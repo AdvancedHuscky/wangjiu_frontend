@@ -101,7 +101,7 @@ export default {
   filters: {
     currency
   },
-  // hhh
+  // 
   created() {
     const locationData = localStorage.getItem('cartInfo');
     if (!locationData) { // nothing in cart
