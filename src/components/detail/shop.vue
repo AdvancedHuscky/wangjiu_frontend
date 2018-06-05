@@ -110,10 +110,12 @@ export default {
     } else {
       dataObj = JSON.parse(localData);
       const tempData = dataObj[this.id];
+      console.log(tempData);
       this.cartNum = tempData.num;
     }
     Axios.get(`/detail?id=${this.id}`).then(({ data }) => {
       this.goodArr = data.result.list[0].list
+      console.log(111);
       console.log(this.goodArr);
     });
     function swiper2() {
