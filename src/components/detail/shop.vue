@@ -113,6 +113,7 @@ export default {
       console.log(tempData);
       this.cartNum = tempData.num;
     }
+    // hehe
     Axios.get(`/detail?id=${this.id}`).then(({ data }) => {
       this.goodArr = data.result.list[0].list
       console.log(111);
